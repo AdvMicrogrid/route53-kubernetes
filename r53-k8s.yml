@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: route53-mapper
+  namespace: kube-system
+  labels:
+    app: route53-mapper
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: route53-mapper
+    spec:
+      containers:
+        - image: 876270261134.dkr.ecr.us-west-2.amazonaws.com/route53-mapper:latest
+          name: route53-mapper
+      nodeSelector:
+        kubernetes.io/role: master
